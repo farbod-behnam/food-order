@@ -1,6 +1,7 @@
 import { Meal } from "../../../models/meal";
 
 import classes from "./MealItem.module.css";
+import MealItemForm from "./MealItemForm/MealItemForm";
 
 interface Props {
     meal: Meal;
@@ -18,7 +19,7 @@ export default function MealItem(props: Props) {
                 <div className={classes.price}>{price}</div>
             </div>
             <div>
-
+                <MealItemForm id={props.meal.id} />
             </div>
         </li>
     );
