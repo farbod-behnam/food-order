@@ -1,4 +1,4 @@
-import { Meal } from "../../../models/meal";
+import { Meal } from "../../../models/meal.model";
 
 import classes from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm/MealItemForm";

@@ -1,5 +1,5 @@
 
-import { InputModel } from "../../../models/InputModel";
+import { InputModel } from "../../../models/input.model";
 import classes from "./Input.module.css";
 
 interface Props {

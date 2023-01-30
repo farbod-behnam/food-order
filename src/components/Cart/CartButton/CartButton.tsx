@@ -9,7 +9,7 @@ interface Props extends ComponentPropsWithoutRef<"button"> {
 export default function CartButton(props: Props) {
 
     return (
-        <button className={classes.button}>
+        <button className={classes.button} onClick={props.onClick}>
             <span className={classes.icon}>
                 <CartIcon />
             </span>
