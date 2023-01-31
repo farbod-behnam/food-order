@@ -22,7 +22,7 @@ export default function CartItem(props: Props) {
           </div>
         </div>
         <div className={classes.actions}>
-          <button onClick={() => props.onRemove}>−</button>
+          <button onClick={() => props.onRemove(props.item)}>−</button>
           <button onClick={() => props.onAdd(props.item)}>+</button>
         </div>
       </li>

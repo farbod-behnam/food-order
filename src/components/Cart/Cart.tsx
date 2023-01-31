@@ -25,6 +25,7 @@ export default function Cart(props: Props) {
     };
 
     const cartItemRemoveHandler = (item: Item) => {
+        cartContext.removeItem(item);
     };
 
 
