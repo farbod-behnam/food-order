@@ -19,13 +19,15 @@ export default function Cart(props: Props) {
     const totalAmount = "$" + cartContext.totalAmount.toFixed(2);
     const hasItems = cartContext.items.length > 0;
 
-    const cartItemRemoveHandler = (item: Item) => {
-
-    };
-
     const cartItemAddHandler = (item: Item) => {
-
+        let newItem: Item = {...item, amount: 1};
+        cartContext.addItem(newItem);
     };
+
+    const cartItemRemoveHandler = (item: Item) => {
+    };
+
+
 
 
     return (
@@ -34,9 +36,7 @@ export default function Cart(props: Props) {
                 {cartContext.items.map((item) => (
                     <CartItem 
                         key={item.id} 
-                        name={item.name} 
-                        amount={item.amount} 
-                        price={item.price} 
+                        item={item}
                         onAdd={cartItemAddHandler.bind(null, item)} 
                         onRemove={cartItemRemoveHandler.bind(null, item)} 
                     />
