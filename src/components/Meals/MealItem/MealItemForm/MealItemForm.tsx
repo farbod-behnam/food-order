@@ -15,7 +15,7 @@ export default function MealItemForm(props: Props) {
     const amountInputRef = useRef<HTMLInputElement>(null);
 
     const isEnteredAmountValid = (enteredAmountStr: string | undefined, enteredAmount: number): boolean => {
-        return (enteredAmountStr?.trim.length !== 0 || enteredAmount >= 1 || enteredAmount < 5);
+        return (enteredAmountStr?.trim().length === 0 || enteredAmount < 1 || enteredAmount > 5);
     }
 
     const submitHandler = (event: FormEvent<HTMLFormElement>) => {
@@ -26,9 +26,11 @@ export default function MealItemForm(props: Props) {
         let enteredAmount = 0;
         if (enteredAmountStr !== undefined) {
             enteredAmount = parseInt(enteredAmountStr, 10);
+            setAmountIsValid(true);
         }
 
-        if (enteredAmountStr?.trim().length === 0 || enteredAmount < 1 || enteredAmount > 5) {
+        // if (enteredAmountStr?.trim().length === 0 || enteredAmount < 1 || enteredAmount > 5) {
+        if (isEnteredAmountValid(enteredAmountStr, enteredAmount)) {
             setAmountIsValid(false);
             return;
         }
@@ -50,7 +52,7 @@ export default function MealItemForm(props: Props) {
                     defaultValue: "1"
                 }}></Input>
             <button>+ Add</button>
-            {amountIsValid === false && <p>Please enter a valid amount (1-5)</p>}
+            {amountIsValid === false && <p className={classes.error}>Please enter a valid amount (1-5)</p>}
         </form>
     );
 }

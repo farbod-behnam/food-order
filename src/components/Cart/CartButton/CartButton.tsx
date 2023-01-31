@@ -11,7 +11,7 @@ export default function CartButton(props: Props) {
 
     const cartContext = useContext(CartContext);
 
-     const itemList = cartContext.items;
+    //  const itemList = cartContext.items;
     //  let numberOfCartItems: number = 0;
 
     //  for (let item of itemList) {
