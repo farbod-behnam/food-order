@@ -1,12 +1,13 @@
 
+import { Item } from "../../../models/item.model";
 import classes from "./CartItem.module.css";
 
 interface Props {
     name: string;
     price: number;
     amount: number;
-    onAdd: () => void;
-    onRemove: () => void;
+    onAdd: (item: Item) => void;
+    onRemove: (item: Item) => void;
 }
 
 export default function CartItem(props: Props) {
@@ -23,8 +24,8 @@ export default function CartItem(props: Props) {
           </div>
         </div>
         <div className={classes.actions}>
-          <button onClick={props.onRemove}>−</button>
-          <button onClick={props.onAdd}>+</button>
+          <button onClick={() => props.onRemove}>−</button>
+          <button onClick={() => props.onAdd}>+</button>
         </div>
       </li>
     );
