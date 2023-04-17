@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext } from "react";
 import CartContext from "../../../context/cart-context";
 import { Item } from "../../../models/item.model";
@@ -33,3 +34,5 @@ export default function MealItem(props: Props) {
         </li>
     );
 }
+
+// export default React.memo(MealItem);
