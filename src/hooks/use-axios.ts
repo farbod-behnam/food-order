@@ -19,6 +19,7 @@ export default function useAxios<T>() {
             setData(response.data);
 
         } catch (err) {
+            setIsLoading(false);
             console.log(err);
             if (axios.isAxiosError(err)) {
                 setError(err.message);

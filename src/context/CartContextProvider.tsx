@@ -11,10 +11,11 @@ const defaultCartState = new CartState([], 0);
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
 
-    if (action.type === CartActionEnum.ADD_ITEM) {
-        const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
 
-        let existingCartItemIndex = state.items.findIndex(item => item.id === action.item.id);
+    if (action.item !== undefined && action.type === CartActionEnum.ADD_ITEM) {
+        const updatedTotalAmount = state.totalAmount + action.item.meal.price * action.item.amount;
+
+        let existingCartItemIndex = state.items.findIndex(item => action.item && item.meal.id === action.item.meal.id);
         let existingCartItem = state.items[existingCartItemIndex];
 
         let updatedItems: Item[] = [];
@@ -31,17 +32,17 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         return new CartState(updatedItems, updatedTotalAmount);
     }
     
-    if (action.type === CartActionEnum.REMOVE_ITEM) {
+    if (action.item !== undefined && action.type === CartActionEnum.REMOVE_ITEM) {
 
-        let existingCartItemIndex = state.items.findIndex(item => item.id === action.item.id);
+        let existingCartItemIndex = state.items.findIndex(item => action.item && item.meal.id === action.item.meal.id);
         let existingItem = state.items[existingCartItemIndex];
 
 
-        let updatedTotalAmount = state.totalAmount - existingItem.price;
+        let updatedTotalAmount = state.totalAmount - existingItem.meal.price;
         let updatedItems: Item[] = [];
 
         if (existingItem.amount === 1) {
-            updatedItems = state.items.filter(item => item.id !== action.item.id);
+            updatedItems = state.items.filter(item => action.item && item.meal.id !== action.item.meal.id);
         }
         else {
             let updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
@@ -50,6 +51,10 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         }
 
         return new CartState(updatedItems, updatedTotalAmount);
+    }
+
+    if (action.type === CartActionEnum.CLEAR) {
+        return defaultCartState;
     }
 
 
@@ -72,11 +77,16 @@ export default function CartContextProvider(props: Props) {
         dispatchCartAction(new CartAction(CartActionEnum.REMOVE_ITEM, item))
     }
 
+    const clearCarthandler = () => {
+        dispatchCartAction(new CartAction(CartActionEnum.CLEAR, undefined))
+    }
+
     const cartContext: Cart = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
-        removeItem: removeItemFromCartHandler 
+        removeItem: removeItemFromCartHandler,
+        clearCart: clearCarthandler
     };
 
     return (

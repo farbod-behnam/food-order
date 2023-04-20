@@ -18,7 +18,7 @@ export default function MealItem(props: Props) {
     const price: string = "$" + props.meal.price.toFixed(2);
 
     const addToCartHandler = (amount: number) => {
-        cartContext.addItem(new Item(props.meal.id, props.meal.name, amount, props.meal.price));
+        cartContext.addItem(new Item(undefined, props.meal, amount));
     }
 
     return (

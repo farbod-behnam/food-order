@@ -10,12 +10,12 @@ interface Props {
 
 export default function CartItem(props: Props) {
 
-    const price = "$" + props.item.price.toFixed(2);
+    const price = "$" + props.item.meal.price.toFixed(2);
 
     return (
         <li className={classes['cart-item']}>
         <div>
-          <h2>{props.item.name}</h2>
+          <h2>{props.item.meal.name}</h2>
           <div className={classes.summary}>
             <span className={classes.price}>{price}</span>
             <span className={classes.amount}>x {props.item.amount}</span>

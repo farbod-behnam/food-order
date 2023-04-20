@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useAxios from "../../../hooks/use-axios";
 import { Meal } from "../../../models/meal.model";
 import Card from "../../UI/Card/Card";
@@ -29,6 +29,15 @@ export default function AvailableMeals() {
             </section>
         );
     }
+
+    if (error) {
+        return (
+            <section className={classes.MealsError}>
+                <p>{error}</p>
+            </section>
+        );
+    }
+
 
     const mealList = meals && meals.map(meal => <MealItem key={meal.id} meal={meal}></MealItem>);
 

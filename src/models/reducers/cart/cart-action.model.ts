@@ -3,9 +3,9 @@ import { CartActionEnum } from "./cart-action.enum";
 
 export class CartAction {
     type: CartActionEnum;
-    item: Item;
+    item: Item | undefined;
 
-    constructor(type: CartActionEnum, item: Item) {
+    constructor(type: CartActionEnum, item: Item | undefined) {
         this.type = type;
         this.item = item;
     }

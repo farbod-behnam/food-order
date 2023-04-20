@@ -1,14 +1,14 @@
+import { Meal } from "./meal.model";
+
 export class Item {
 
-    id: string;
-    name: string;
+    id: number | undefined;
+    meal: Meal;
     amount: number;
-    price: number;
 
-    constructor(id: string, name: string, amount: number, price: number) {
+    constructor(id: number | undefined,  meal: Meal, amount: number) {
         this.id = id;
-        this.name = name;
+        this.meal = meal;
         this.amount = amount;
-        this.price = price;
     }
 }

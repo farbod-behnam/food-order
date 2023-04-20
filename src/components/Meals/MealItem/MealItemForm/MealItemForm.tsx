@@ -5,7 +5,7 @@ import classes from "./MealItemForm.module.css";
 
 interface Props {
     onAddToCart(enteredAmount: number): void;
-    id: string;
+    id: number;
 }
 
 export default function MealItemForm(props: Props) {
